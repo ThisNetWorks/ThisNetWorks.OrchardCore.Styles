@@ -1,0 +1,46 @@
+{
+  "name": "styles",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "watch": "set APP_ENV=external && vue-cli-service build --watch",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@types/jquery": "^3.5.7",
+    "autoprefixer": "^10.3.7",
+    "axios": "^0.23.0",
+    "core-js": "^3.6.5",
+    "dashify": "^2.0.0",
+    "hex-rgb": "^5.0.0",
+    "liquidjs": "^9.28.0",
+    "one-colorpicker": "^1.0.12",
+    "postcss": "^8.3.11",
+    "postcss-add-root-selector": "^1.0.4",
+    "rgb-hex": "^4.0.0",
+    "vue": "^2.6.11",
+    "vue-class-component": "^7.2.3",
+    "vue-numeric-input": "^2.0.0",
+    "vue-property-decorator": "^9.1.2"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "@vue/cli-plugin-babel": "~5.0.0-beta.4",
+    "@vue/cli-plugin-eslint": "~5.0.0-beta.4",
+    "@vue/cli-plugin-typescript": "~5.0.0-beta.4",
+    "@vue/cli-service": "^5.0.0-beta.4",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-typescript": "^7.0.0",
+    "eslint": "^7.0.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^6.2.2",
+    "prettier": "^2.2.1",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "typescript": "~4.1.5",
+    "vue-template-compiler": "^2.6.11"
+  }
+}

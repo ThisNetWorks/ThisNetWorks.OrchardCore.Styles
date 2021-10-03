@@ -1,0 +1,83 @@
+@model StyleFieldSettingsViewModel
+
+<div id="styleFieldSchemaSelector">
+    <div class="form-group w-md-50">
+        <select asp-for="StyleSchemaName" asp-items="Model.StyleSchemas" class="form-control" v-model="styleSchemaName"></select>
+        <span class="hint">@T["The style schema."]</span>
+    </div>
+
+    <div class="form-group" asp-validation-class-for="StyleSchema" v-show="showStyleSchema">
+        <label asp-for="StyleSchema">@T["Style Schema"]</label>
+        <div class="form-control" style="min-height: 400px;">
+            <div id="@Html.IdFor(x => x.StyleSchema)_editor" style="min-height: 385px;"></div>
+        </div>
+        <textarea asp-for="StyleSchema" hidden></textarea>
+        <span class="hint">@T["A custom style schema."]</span>
+        <span asp-validation-for="StyleSchema"></span>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="w-md-75 w-xl-50 pr-md-3">
+        <label asp-for="Hint">@T["Hint"]</label>
+        <textarea asp-for="Hint" rows="2" class="form-control"></textarea>
+    </div>
+    <span class="hint">@T["The hint text to display for this field on the editor."]</span>
+</div>
+
+<script at="Foot" depends-on="vuejs, monaco, admin" asp-name="Style-Field-Settings">
+    var app = new Vue({
+        el: "#styleFieldSchemaSelector",
+        data: {
+            styleSchemaName: "@Model.StyleSchemaName"
+        },
+        computed: {
+            showStyleSchema: function() {
+                return (this.styleSchemaName === (null | undefined)) | (this.styleSchemaName.length === 0);
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        require(['vs/editor/editor.main'], function () {
+
+            var html = document.getElementsByTagName("html")[0];
+            const mutationObserver = new MutationObserver(setTheme);
+            mutationObserver.observe(html, { attributes: true });
+
+            function setTheme() {
+                var theme = html.dataset.theme;
+                if (theme === "darkmode") {
+                    monaco.editor.setTheme('vs-dark')
+                } else {
+                    monaco.editor.setTheme('vs')
+                }
+            }
+
+            setTheme();
+
+            var modelUri = monaco.Uri.parse("x://ThisNetWorks.OrchardCore.Styles.styleschema.json");
+            var editor = document.getElementById('@Html.IdFor(x => x.StyleSchema)_editor');
+            var textArea = document.getElementById('@Html.IdFor(x => x.StyleSchema)');
+            var schema = [];//JSON.parse(editor.dataset.schema)
+            var model = monaco.editor.createModel(textArea.value, "json", modelUri);
+
+            monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+                validate: true,
+                schemas: [{
+                    uri: "x://ThisNetWorks.OrchardCore.Styles.styleschema.schema.json",
+                    fileMatch: [modelUri.toString()],
+                    schema: schema
+                }]
+            });
+
+            var editor = monaco.editor.create(editor, {
+                model: model
+            });
+
+            window.addEventListener("submit", function () {
+                textArea.value = editor.getValue();
+            });
+        });
+    });
+</script>

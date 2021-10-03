@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+
+<body>
+    <noscript>
+        <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+                Please enable it to continue.</strong>
+    </noscript>
+
+    <!-- :style-record='{"Button":{"ButtonColor":{"color":{"hex":"#3f51b5","rgb":"rgb(63 81 181)"},"compiled":"color: #3f51b5;"},"ButtonBackgroundColor":{"color":{"hex":"#e91e63","rgb":"rgb(233 30 99)"},"compiled":"background-color: #e91e63;"},"BorderRadius":{"text":".5rem","compiled":"border-radius: .5rem;"},"compiled":".my-btn {color: #3f51b5;background-color: #e91e63;border-radius: .5rem; }"}}' -->
+    
+    <!-- :schema="{&#xD;&#xA;  &quot;Button&quot;: {&#xD;&#xA;    &quot;displayText&quot;: &quot;The whole button (nested selectors)&quot;,&#xD;&#xA;    &quot;hint&quot;: &quot;The whole button&quot;,&#xD;&#xA;    &quot;renderer&quot;: {&#xD;&#xA;      &quot;name&quot;: &quot;LiquidJs&quot;,&#xD;&#xA;      &quot;template&quot;: &quot;.my-btn { {%- for v in value %}{{ v }}{%- endfor%} }&quot;&#xD;&#xA;    },&#xD;&#xA;    &quot;example&quot;: &quot;&lt;button class=&#x27;btn my-btn&#x27;&gt;Default&lt;/button&quot;,&#xD;&#xA;    &quot;schema&quot;: {&#xD;&#xA;      &quot;ButtonColor&quot;: {&#xD;&#xA;        &quot;component&quot;: &quot;Color&quot;,&#xD;&#xA;        &quot;displayText&quot;: &quot;Button text color&quot;,&#xD;&#xA;        &quot;hint&quot;: &quot;Pick a color for the button text&quot;,&#xD;&#xA;        &quot;defaultValue&quot;: {&#xD;&#xA;          &quot;color&quot;: {&#xD;&#xA;            &quot;hex&quot;: &quot;#ffc107&quot;,&#xD;&#xA;            &quot;rgb&quot;: &quot;rgb(255 193 7)&quot;&#xD;&#xA;          }&#xD;&#xA;        },&#xD;&#xA;        &quot;renderer&quot;: {&#xD;&#xA;          &quot;name&quot;: &quot;LiquidJs&quot;,&#xD;&#xA;          &quot;template&quot;: &quot;color: {{ value.hex }};&quot;&#xD;&#xA;        }&#xD;&#xA;      },&#xD;&#xA;      &quot;ButtonBackgroundColor&quot;: {&#xD;&#xA;        &quot;component&quot;: &quot;Color&quot;,&#xD;&#xA;        &quot;displayText&quot;: &quot;Button background color&quot;,&#xD;&#xA;        &quot;hint&quot;: &quot;Pick a color for the button background&quot;,&#xD;&#xA;        &quot;defaultValue&quot;: {&#xD;&#xA;          &quot;color&quot;: {&#xD;&#xA;            &quot;hex&quot;: &quot;#03a9f4&quot;,&#xD;&#xA;            &quot;rgb&quot;: &quot;rgb(3 169 244)&quot;&#xD;&#xA;          },&#xD;&#xA;          &quot;compiled&quot;: &quot;&quot;&#xD;&#xA;        },&#xD;&#xA;        &quot;renderer&quot;: {&#xD;&#xA;          &quot;name&quot;: &quot;LiquidJs&quot;,&#xD;&#xA;          &quot;template&quot;: &quot;background-color: {{ value.hex }};&quot;&#xD;&#xA;        }&#xD;&#xA;      },&#xD;&#xA;      &quot;BorderRadius&quot;: {&#xD;&#xA;        &quot;component&quot;: &quot;TextSize&quot;,&#xD;&#xA;        &quot;displayText&quot;: &quot;Border radius&quot;,&#xD;&#xA;        &quot;hint&quot;: &quot;Enter a border radius (rem, em, px)&quot;,&#xD;&#xA;        &quot;defaultValue&quot;: {&#xD;&#xA;          &quot;text&quot;: &quot;.25rem&quot;,&#xD;&#xA;          &quot;compiled&quot;: &quot;&quot;&#xD;&#xA;        },&#xD;&#xA;        &quot;renderer&quot;: {&#xD;&#xA;          &quot;name&quot;: &quot;LiquidJs&quot;,&#xD;&#xA;          &quot;template&quot;: &quot;border-radius: {{ value }};&quot;&#xD;&#xA;        }&#xD;&#xA;      }&#xD;&#xA;    }&#xD;&#xA;  }&#xD;&#xA;}"-->
+    <div id="app" data-tnw-styles="true">
+        <styles-app 
+            :style-record='{"Button":{"ButtonColor":{"color":{"hex":"#3f51b5","rgb":"rgb(63 81 181)"},"compiled":"color: #3f51b5;"},"ButtonBackgroundColor":{"color":{"hex":"#e91e63","rgb":"rgb(233 30 99)"},"compiled":"background-color: #e91e63;"},"BorderRadius":{"text":".5rem","compiled":"border-radius: .5rem;"},"compiled":".my-btn {color: #3f51b5;background-color: #e91e63;border-radius: .5rem; }"}}'    
+            :schema='{&#xD;&#xA;  &quot;Button&quot;: {&#xD;&#xA;    &quot;displayText&quot;: &quot;The whole button (nested selectors)&quot;,&#xD;&#xA;    &quot;hint&quot;: &quot;The whole button&quot;,&#xD;&#xA;    &quot;renderer&quot;: {&#xD;&#xA;      &quot;name&quot;: &quot;LiquidJs&quot;,&#xD;&#xA;      &quot;template&quot;: &quot;.my-btn { {%- for v in value %}{{ v }}{%- endfor%} }&quot;&#xD;&#xA;    },&#xD;&#xA;    &quot;example&quot;: &quot;&lt;button class=&#x27;btn my-btn&#x27;&gt;Default&lt;/button&quot;,&#xD;&#xA;    &quot;schema&quot;: {&#xD;&#xA;      &quot;ButtonColor&quot;: {&#xD;&#xA;        &quot;component&quot;: &quot;Color&quot;,&#xD;&#xA;        &quot;displayText&quot;: &quot;Button text color&quot;,&#xD;&#xA;        &quot;hint&quot;: &quot;Pick a color for the button text&quot;,&#xD;&#xA;        &quot;defaultValue&quot;: {&#xD;&#xA;          &quot;color&quot;: {&#xD;&#xA;            &quot;hex&quot;: &quot;#ffc107&quot;,&#xD;&#xA;            &quot;rgb&quot;: &quot;rgb(255 193 7)&quot;&#xD;&#xA;          }&#xD;&#xA;        },&#xD;&#xA;        &quot;renderer&quot;: {&#xD;&#xA;          &quot;name&quot;: &quot;LiquidJs&quot;,&#xD;&#xA;          &quot;template&quot;: &quot;color: {{ value.hex }};&quot;&#xD;&#xA;        }&#xD;&#xA;      },&#xD;&#xA;      &quot;ButtonBackgroundColor&quot;: {&#xD;&#xA;        &quot;component&quot;: &quot;Color&quot;,&#xD;&#xA;        &quot;displayText&quot;: &quot;Button background color&quot;,&#xD;&#xA;        &quot;hint&quot;: &quot;Pick a color for the button background&quot;,&#xD;&#xA;        &quot;defaultValue&quot;: {&#xD;&#xA;          &quot;color&quot;: {&#xD;&#xA;            &quot;hex&quot;: &quot;#03a9f4&quot;,&#xD;&#xA;            &quot;rgb&quot;: &quot;rgb(3 169 244)&quot;&#xD;&#xA;          },&#xD;&#xA;          &quot;compiled&quot;: &quot;&quot;&#xD;&#xA;        },&#xD;&#xA;        &quot;renderer&quot;: {&#xD;&#xA;          &quot;name&quot;: &quot;LiquidJs&quot;,&#xD;&#xA;          &quot;template&quot;: &quot;background-color: {{ value.hex }};&quot;&#xD;&#xA;        }&#xD;&#xA;      },&#xD;&#xA;      &quot;BorderRadius&quot;: {&#xD;&#xA;        &quot;component&quot;: &quot;TextSize&quot;,&#xD;&#xA;        &quot;displayText&quot;: &quot;Border radius&quot;,&#xD;&#xA;        &quot;hint&quot;: &quot;Enter a border radius (rem, em, px)&quot;,&#xD;&#xA;        &quot;defaultValue&quot;: {&#xD;&#xA;          &quot;text&quot;: &quot;.25rem&quot;,&#xD;&#xA;          &quot;compiled&quot;: &quot;&quot;&#xD;&#xA;        },&#xD;&#xA;        &quot;renderer&quot;: {&#xD;&#xA;          &quot;name&quot;: &quot;LiquidJs&quot;,&#xD;&#xA;          &quot;template&quot;: &quot;border-radius: {{ value }};&quot;&#xD;&#xA;        }&#xD;&#xA;      }&#xD;&#xA;    }&#xD;&#xA;  }&#xD;&#xA;}'
+            
+            ></styles-app>
+            <template slot="slot">
+
+            </template>
+        </styles-app>
+
+    </div>
+
+    <!-- built files will be auto injected -->
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+name: publish
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2   
+      - name: Setup nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install Yarn
+        run: npm install yarn -g
+      - name: Install VueCli
+        run: npm install @vue/cli@latest -g        
+      - name: Install Yarn packages
+        working-directory: ./src/ThisNetWorks.OrchardCore.Styles/Assets/styles
+        run: yarn install
+      - name: Build styles app
+        working-directory: ./src/ThisNetWorks.OrchardCore.Styles/Assets/styles
+        run: yarn build        
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Test
+        run: dotnet test --no-restore --no-build
+      - name: Pack
+        run: |
+          arrTag=(${GITHUB_REF//\// })
+          VERSION="${arrTag[2]}"
+          VERSION="${VERSION:1}"
+          echo "VERSION $VERSION"
+          dotnet pack --output artifacts --configuration Release --no-restore --no-build -p:Version=$VERSION -p:TreatWarningsAsErrors=false
+      # - name: Push with dotnet
+        # run: dotnet nuget push artifacts/*.nupkg --api-key ${{ secrets.API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: artifacts
+          path: artifacts

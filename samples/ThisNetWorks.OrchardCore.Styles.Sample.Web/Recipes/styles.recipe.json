@@ -1,0 +1,306 @@
+{
+  "name": "StylesSample",
+  "displayName": "Styles sample",
+  "description": "Styles Sample based on TheBlogTheme",
+  "author": "ThisNetWorks",
+  "website": "https://github.com/ThisNetWorks",
+  "version": "1",
+  "issetuprecipe": true,
+  "categories": [
+    "default"
+  ],
+  "tags": [
+    "blog"
+  ],
+  "variables": {
+    "styleGuideContentItemId": "[js:uuid()]"
+  },
+  "steps": [
+    {
+      "name": "Recipes",
+      "Values": [
+        {
+          "ExecutionId": "",
+          "Name": "Blog"
+        }
+      ]
+    },
+    {
+      "name": "Feature",
+      "enable": [
+        "ThisNetWorks.OrchardCore.Styles"
+      ],
+      "disable": []
+    },
+    {
+      "name": "settings",
+      "HomeRoute": {
+        "Action": "Display",
+        "Controller": "Item",
+        "Area": "OrchardCore.Contents",
+        "ContentItemId": "[js: variables('styleGuideContentItemId')]"
+      }
+    },    {
+      "name": "StyleSchemas",
+      "StyleSchemas": {
+        "Button": {
+          "Name": "Button",
+          "Schema": "{\r\n  \"Button\": {\r\n    \"displayText\": \"Button\",\r\n    \"hint\": \"Button styles\",\r\n    \"renderer\": {\r\n      \"name\": \"LiquidJs\",\r\n      \"template\": \".my-btn { {%- for v in value %} {{ v }}{%- endfor%} }\"\r\n    },\r\n    \"example\": \"<button class='btn my-btn'>Default</button\",\r\n    \"schema\": {\r\n      \"Color\": {\r\n        \"component\": \"Color\",\r\n        \"displayText\": \"Button text color\",\r\n        \"hint\": \"Pick a color for the button text\",\r\n        \"defaultValue\": {\r\n          \"color\": {\r\n            \"hex\": \"#ffc107\",\r\n            \"rgb\": \"rgb(255 193 7)\"\r\n          }\r\n        },\r\n        \"renderer\": \"CssHexEntry\"\r\n      },\r\n      \"BackgroundColor\": {\r\n        \"component\": \"Color\",\r\n        \"displayText\": \"Button background color\",\r\n        \"hint\": \"Pick a color for the button background\",\r\n        \"defaultValue\": {\r\n          \"color\": {\r\n            \"hex\": \"#03a9f4\",\r\n            \"rgb\": \"rgb(3 169 244)\"\r\n          },\r\n          \"compiled\": \"\"\r\n        },\r\n        \"renderer\": \"CssHexEntry\"\r\n      },\r\n      \"BorderRadius\": {\r\n        \"component\": \"SizeSingle\",\r\n        \"displayText\": \"Border radius\",\r\n        \"hint\": \"Enter a border radius (rem, em, px)\",\r\n        \"defaultValue\": {\r\n          \"size\": {\r\n            \"size\": 0.5,\r\n            \"unit\": \"rem\"\r\n          },\r\n          \"compiled\": \"\"\r\n        },\r\n        \"props\": {\r\n          \"units\": [\r\n            {\r\n              \"displayText\": \"Rem\",\r\n              \"value\": \"rem\"\r\n            },\r\n            {\r\n              \"displayText\": \"Pixels\",\r\n              \"value\": \"px\"\r\n            }\r\n          ],\r\n          \"mergeUnits\": true,\r\n          \"step\": 0.25\r\n        },\r\n        \"renderer\": \"CssSizeEntry\"\r\n      },\r\n      \"Border\": {\r\n        \"component\": \"TextAny\",\r\n        \"displayText\": \"Border\",\r\n        \"hint\": \"Enter a border definition (1px solid transparent)\",\r\n        \"defaultValue\": {\r\n          \"text\": \"1px solid red\",\r\n          \"compiled\": \"\"\r\n        },\r\n        \"renderer\": \"CssEntry\"\r\n      }\r\n    }\r\n  }\r\n}"
+        },
+        "Background Image": {
+          "Name": "Background Image",
+          "Schema": "{\r\n  \"BackgroundImage\": {\r\n    \"component\": \"Media\",\r\n    \"displayText\": \"Background iamge\",\r\n    \"hint\": \"Pick a image for the background\",\r\n    \"defaultValue\": {\r\n      \"asset\": {\r\n        \"path\": \"about-bg.jpg\",\r\n        \"shortcode\": \"[image]about-bg.jpg[/image]\"\r\n      }\r\n    },\r\n    \"renderer\": {\r\n      \"name\": \"LiquidJs\",\r\n      \"template\": \".card { background-image: url('{{ value }}'); }\"\r\n    }\r\n  }\r\n}"
+        },
+        "Css Variables": {
+          "Name": "Css Variables",
+          "Schema": "{\r\n  \"CssVars\": {\r\n    \"displayText\": \"Css Vars\",\r\n    \"hint\": \"A range of css vars for the site\",\r\n    \"renderer\": \"RootVars\",\r\n    \"example\": \"\",\r\n    \"schema\": {\r\n      \"ButtonTextColor\": {\r\n        \"component\": \"Color\",\r\n        \"displayText\": \"Button text color\",\r\n        \"hint\": \"Pick a color for the button text\",\r\n        \"defaultValue\": {\r\n          \"color\": {\r\n            \"hex\": \"#095b9eff\",\r\n            \"rgb\": \"rgba(9, 91, 158, 1)\"\r\n          },\r\n          \"compiled\": \"\"\r\n        },\r\n        \"renderer\": \"CssVarColor\"\r\n      },\r\n      \"ButtonBackgroundColor\": {\r\n        \"component\": \"Color\",\r\n        \"displayText\": \"Button background color\",\r\n        \"hint\": \"Pick a color for the button background\",\r\n        \"defaultValue\": {\r\n          \"color\": {\r\n            \"hex\": \"#4c839e\",\r\n            \"rgb\": \"rgb(76 131 158)\"\r\n          },\r\n          \"compiled\": \"\"\r\n        },\r\n        \"renderer\": \"CssVarColor\"\r\n      },\r\n      \"BorderRadius\": {\r\n        \"component\": \"SizeSingle\",\r\n        \"displayText\": \"Border radius\",\r\n        \"hint\": \"Enter a border radius (rem, em, px)\",\r\n        \"defaultValue\": {\r\n          \"size\": {\r\n            \"size\": 0.5,\r\n            \"unit\": \"rem\"\r\n          },\r\n          \"compiled\": \"\"\r\n        },\r\n        \"props\": {\r\n          \"units\": [\r\n            {\r\n              \"displayText\": \"Rem\",\r\n              \"value\": \"rem\"\r\n            },\r\n            {\r\n              \"displayText\": \"Pixels\",\r\n              \"value\": \"px\"\r\n            }\r\n          ],\r\n          \"mergeUnits\": true,\r\n          \"step\": 0.25\r\n        },\r\n        \"renderer\": \"CssVarSizeEntry\"\r\n      },\r\n      \"Border\": {\r\n        \"component\": \"TextAny\",\r\n        \"displayText\": \"Border\",\r\n        \"hint\": \"Enter a border definition (1px solid transparent)\",\r\n        \"defaultValue\": {\r\n          \"text\": \"1px solid black\",\r\n          \"compiled\": \"\"\r\n        },\r\n        \"renderer\": \"CssVarEntry\"\r\n      }\r\n    }\r\n  }\r\n}"
+        },
+        "H2 Color": {
+          "Name": "H2 Color",
+          "Schema": "{\r\n  \"H2Color\": {\r\n    \"component\": \"Color\",\r\n    \"displayText\": \"H2 color\",\r\n    \"hint\": \"Pick a color for the H2 element\",\r\n    \"defaultValue\": {\r\n      \"color\": {\r\n        \"hex\": \"#8bc34a\",\r\n        \"rgb\": \"rgba(139, 195, 74, 1)\"\r\n      }\r\n    },\r\n    \"renderer\": {\r\n      \"name\": \"LiquidJs\",\r\n      \"template\": \"h2 { color: {{ value.hex }}; }\"\r\n    }\r\n  }\r\n}"
+        }
+      }
+    },
+    {
+      "name": "ContentDefinition",
+      "ContentTypes": [
+        {
+          "Name": "StyleGuide",
+          "DisplayName": "Style Guide",
+          "Settings": {
+            "ContentTypeSettings": {
+              "Creatable": true,
+              "Listable": true,
+              "Draftable": true,
+              "Versionable": true,
+              "Securable": true
+            },
+            "FullTextAspectSettings": {}
+          },
+          "ContentTypePartDefinitionRecords": [
+            {
+              "PartName": "StyleGuide",
+              "Name": "StyleGuide",
+              "Settings": {
+                "ContentTypePartSettings": {
+                  "Position": "1"
+                }
+              }
+            },
+            {
+              "PartName": "AutoroutePart",
+              "Name": "AutoroutePart",
+              "Settings": {
+                "ContentTypePartSettings": {
+                  "Position": "3"
+                }
+              }
+            },
+            {
+              "PartName": "TitlePart",
+              "Name": "TitlePart",
+              "Settings": {
+                "ContentTypePartSettings": {
+                  "Position": "0"
+                }
+              }
+            },
+            {
+              "PartName": "LiquidPart",
+              "Name": "LiquidPart",
+              "Settings": {
+                "ContentTypePartSettings": {
+                  "Position": "2"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "ContentParts": [
+        {
+          "Name": "StyleGuide",
+          "Settings": {},
+          "ContentPartFieldDefinitionRecords": [
+            {
+              "FieldName": "StyleField",
+              "Name": "CssVariables",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "Css Variables",
+                  "Position": "0"
+                },
+                "ContentIndexSettings": {},
+                "StyleFieldSettings": {
+                  "StyleSchemaName": "Css Variables",
+                  "StyleSchema": "{}"
+                }
+              }
+            },
+            {
+              "FieldName": "StyleField",
+              "Name": "Button",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "Button",
+                  "Position": "1"
+                },
+                "ContentIndexSettings": {},
+                "StyleFieldSettings": {
+                  "StyleSchemaName": "Button",
+                  "StyleSchema": "{}"
+                }
+              }
+            },
+            {
+              "FieldName": "StyleField",
+              "Name": "Heading2",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "Heading 2",
+                  "Position": "2"
+                },
+                "ContentIndexSettings": {},
+                "StyleFieldSettings": {
+                  "StyleSchemaName": "H2 Color",
+                  "StyleSchema": "{}"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Content",
+      "data": [
+        {
+          "ContentItemId": "[js: variables('styleGuideContentItemId')]",
+          "ContentType": "StyleGuide",
+          "DisplayText": "Style Guide",
+          "Latest": true,
+          "Published": true,
+          "Owner": "[js: parameters('AdminUserId')]",
+          "Author": "[js: parameters('AdminUsername')]",
+          "StyleGuide": {
+            "CssVariables": {
+              "StyleRecord": {
+                "CssVars": {
+                  "ButtonTextColor": {
+                    "color": {
+                      "hex": "#095b9eff",
+                      "rgb": "rgba(9, 91, 158, 1)"
+                    },
+                    "compiled": "--button-text-color-hex: #095b9eff;\n--button-text-color-rgb: rgba(9, 91, 158, 1);"
+                  },
+                  "ButtonBackgroundColor": {
+                    "color": {
+                      "hex": "#4c839e",
+                      "rgb": "rgb(76 131 158)"
+                    },
+                    "compiled": "--button-background-color-hex: #4c839e;\n--button-background-color-rgb: rgb(76 131 158);"
+                  },
+                  "BorderRadius": {
+                    "size": {
+                      "size": 0.75,
+                      "unit": "rem"
+                    },
+                    "compiled": "--border-radius: 0.75rem;"
+                  },
+                  "Border": {
+                    "text": "1px solid black",
+                    "compiled": "--border: 1px solid black;"
+                  },
+                  "compiled": ":root {\n          --button-text-color-hex: #095b9eff;\n--button-text-color-rgb: rgba(9, 91, 158, 1);\n--button-background-color-hex: #4c839e;\n--button-background-color-rgb: rgb(76 131 158);\n--border-radius: 0.75rem;\n--border: 1px solid black;\n        }\n        "
+                }
+              },
+              "CompiledStyle": ":root {\r\n          --button-text-color-hex: #095b9eff;\r\n--button-text-color-rgb: rgba(9, 91, 158, 1);\r\n--button-background-color-hex: #4c839e;\r\n--button-background-color-rgb: rgb(76 131 158);\r\n--border-radius: 0.75rem;\r\n--border: 1px solid black;\r\n        }\r\n        "
+            },
+            "Button": {
+              "StyleRecord": {
+                "Button": {
+                  "Color": {
+                    "color": {
+                      "hex": "#ffc107",
+                      "rgb": "rgb(255 193 7)"
+                    },
+                    "compiled": "color: #ffc107;"
+                  },
+                  "BackgroundColor": {
+                    "color": {
+                      "hex": "#03a9f4",
+                      "rgb": "rgb(3 169 244)"
+                    },
+                    "compiled": "background-color: #03a9f4;"
+                  },
+                  "BorderRadius": {
+                    "size": {
+                      "size": 0.5,
+                      "unit": "rem"
+                    },
+                    "compiled": "border-radius: 0.5rem;"
+                  },
+                  "Border": {
+                    "text": "1px solid red",
+                    "compiled": "border: 1px solid red;"
+                  },
+                  "compiled": ".my-btn { color: #ffc107; background-color: #03a9f4; border-radius: 0.5rem; border: 1px solid red; } .nav-link { color: #ffc107; background-color: #03a9f4; border-radius: 0.5rem; border: 1px solid red;}"
+                }
+              },
+              "CompiledStyle": ".my-btn { color: #ffc107; background-color: #03a9f4; border-radius: 0.5rem; border: 1px solid red; } .nav-link { color: #ffc107; background-color: #03a9f4; border-radius: 0.5rem; border: 1px solid red;}"
+            },
+            "H1Color": {
+              "StyleRecord": {
+                "H1Color": {
+                  "color": {
+                    "hex": "#8bc34a",
+                    "rgb": "rgba(139, 195, 74, 1)"
+                  },
+                  "compiled": "h1 { color: #8bc34a; }"
+                }
+              },
+              "CompiledStyle": "h1 { color: #8bc34a; }"
+            },
+            "Heading2": {
+              "StyleRecord": {
+                "H2Color": {
+                  "color": {
+                    "hex": "#8bc34a",
+                    "rgb": "rgba(139, 195, 74, 1)"
+                  },
+                  "compiled": "h2 { color: #8bc34a; }"
+                }
+              },
+              "CompiledStyle": "h2 { color: #8bc34a; }"
+            },
+            "BackgroundImage": {
+              "StyleRecord": {
+                "BackgroundImage": {
+                  "asset": {
+                    "path": "home-bg.jpg",
+                    "shortcode": "[image]home-bg.jpg[/image]"
+                  },
+                  "compiled": ".my-bg { background-image: url('[image]home-bg.jpg[/image]'); }"
+                }
+              },
+              "CompiledStyle": ".my-bg { background-image: url('[image]home-bg.jpg[/image]'); }"
+            }
+          },
+          "AutoroutePart": {
+            "Path": "style-guide1",
+            "SetHomepage": false,
+            "Disabled": false,
+            "RouteContainedItems": false,
+            "Absolute": false
+          },
+          "TitlePart": {
+            "Title": "Style Guide"
+          },
+          "LiquidPart": {
+            "Liquid": "{% comment %}\r\nThis style declaration would normally be part of your style sheet\r\n{% endcomment %}\r\n\r\n{% styleblock at: \"Head\" %}\r\n.my-sites-button {\r\n  color: var(--button-text-color-hex);\r\n  background-color: var(--button-background-color-hex);\r\n  border: var(--border);\r\n  border-radius: var(--border-radius);\r\n}\r\n{% endstyleblock %}\r\n\r\n<div class=\"mb-3\">\r\n<button class=\"btn my-sites-button\">Css Var Button</button>\r\n</div>\r\n\r\n<div class=\"mb-3\">\r\n<button class=\"btn my-btn\">My Button</button>\r\n</div>\r\n\r\n<div class=\"mb-3\">\r\n  <h2>heading 2</h2>\r\n</div>\r\n"
+          }
+        }
+      ]
+    }
+  ]
+}

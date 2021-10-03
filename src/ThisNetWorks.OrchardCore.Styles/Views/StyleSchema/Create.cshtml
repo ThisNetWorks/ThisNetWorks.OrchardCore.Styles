@@ -1,0 +1,76 @@
+@model StyleSchemaViewModel
+
+<h1>@RenderTitleSegments(T["Create Style Schema"])</h1>
+
+<div asp-validation-summary="All"></div>
+<form asp-action="Create" method="post">
+
+    <div class="form-group" asp-validation-class-for="Name">
+        <label asp-for="Name">@T["Name"]</label>
+        <input asp-for="Name" class="form-control"/>
+        <span class="hint">@T["The name of this schema."]</span>
+    </div>
+
+      <div class="form-group" asp-validation-class-for="Schema">
+        <label asp-for="Schema">@T["Schema"]</label>
+        <div class="form-control" style="min-height: 400px;">
+            <div id="@Html.IdFor(x => x.Schema)_editor" style="min-height: 385px;"></div>
+        </div>
+        <textarea asp-for="Schema" hidden></textarea>
+        <span class="hint">@T["The style schema."]</span>
+        <span asp-validation-for="Schema"></span>
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">@T["Save"]</button>
+        <a class="btn btn-secondary" asp-route-action="Index">@T["Cancel"]</a>
+    </div>
+
+</form>
+
+
+<script at="Foot" asp-name="jsonrecipe-editor" depends-on="monaco, admin">
+    $(document).ready(function () {
+        require(['vs/editor/editor.main'], function () {
+
+            var html = document.getElementsByTagName("html")[0];
+            const mutationObserver = new MutationObserver(setTheme);
+            mutationObserver.observe(html, { attributes: true });
+
+            function setTheme() {
+                var theme = html.dataset.theme;
+                if (theme === "darkmode") {
+                    monaco.editor.setTheme('vs-dark')
+                } else {
+                    monaco.editor.setTheme('vs')
+                }
+            }
+
+            setTheme();
+
+            var modelUri = monaco.Uri.parse("x://ThisNetWorks.OrchardCore.Styles.styleschema.json");
+            var editor = document.getElementById('@Html.IdFor(x => x.Schema)_editor');
+            var textArea = document.getElementById('@Html.IdFor(x => x.Schema)');
+
+            var schema = [];//JSON.parse(editor.dataset.schema)
+            var model = monaco.editor.createModel(textArea.value, "json", modelUri);
+
+            monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+                validate: true,
+                schemas: [{
+                    uri: "x://ThisNetWorks.OrchardCore.Styles.styleschema.schema.json",
+                    fileMatch: [modelUri.toString()],
+                    schema: schema
+                }]
+            });
+
+            var editor = monaco.editor.create(editor, {
+                model: model
+            });
+
+            window.addEventListener("submit", function () {
+                textArea.value = editor.getValue();
+            });
+        });
+    });
+</script>
