@@ -82,7 +82,7 @@ export default class Color extends Vue {
       schema: this.schema,
     })
       .then((res) => {
-        this.compiled = res;
+        this.compiled = res.css;
         this.updateValue(this.colorValue);
       })
       .catch((error) => this.onError(error));

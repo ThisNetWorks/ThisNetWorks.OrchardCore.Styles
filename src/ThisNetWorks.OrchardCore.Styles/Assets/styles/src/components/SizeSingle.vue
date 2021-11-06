@@ -85,7 +85,7 @@ export default class SizeSingle extends Vue {
       schema: this.schema,
     })
       .then((res) => {
-        this.compiled = res;
+        this.compiled = res.css;
         this.updateValue(this.sizeValue);
       })
       .catch((error) => this.onError(error));

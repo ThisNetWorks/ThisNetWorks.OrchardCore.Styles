@@ -1,14 +1,12 @@
 <template>
   <div>
-    <div class="form-group row" v-if="schema">
-      <div class="col-12 col-md-6">Media Item Lable:</div>
-      <div class="col-12 col-md-6">
-        <media-picker
-          :path="path"
-          @path-change="onPathChange"
-          :mediaItemUrl="mediaItemUrl"
-        />
-      </div>
+    <div class="form-group text-left" v-if="schema">
+      <label class="mb-0">{{ displayText }}</label>
+      <media-picker
+        :path="path"
+        @path-change="onPathChange"
+        :mediaItemUrl="mediaItemUrl"
+      />
     </div>
   </div>
 </template>
@@ -59,7 +57,7 @@ export default class Media extends Vue {
 
   onPathChange(newPath: string) {
     this.path = newPath;
-    this.shortcode = `[image]${this.path}[/image]`;
+    this.shortcode = `[asset_url]${this.path}[/asset_url]`;
   }
 
   @Emit()
@@ -90,7 +88,7 @@ export default class Media extends Vue {
       schema: this.schema,
     })
       .then((res) => {
-        this.compiled = res;
+        this.compiled = res.css;
         this.updateValue(this.mediaValue);
       })
       .catch((error) => this.onError(error));
