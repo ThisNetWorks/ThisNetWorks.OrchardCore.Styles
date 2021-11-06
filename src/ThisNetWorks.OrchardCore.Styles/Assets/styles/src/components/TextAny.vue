@@ -78,7 +78,7 @@ export default class TextAny extends Vue {
       schema: this.schema,
     })
       .then((res) => {
-        this.compiled = res;
+        this.compiled = res.css;
         this.updateValue(this.textValue);
       })
       .catch((error) => this.onError(error));

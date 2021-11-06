@@ -59,7 +59,7 @@ export default class Media extends Vue {
 
   onPathChange(newPath: string) {
     this.path = newPath;
-    this.shortcode = `[image]${this.path}[/image]`;
+    this.shortcode = `[asset_url]${this.path}[/asset_url]`;
   }
 
   @Emit()
@@ -90,7 +90,7 @@ export default class Media extends Vue {
       schema: this.schema,
     })
       .then((res) => {
-        this.compiled = res;
+        this.compiled = res.css;
         this.updateValue(this.mediaValue);
       })
       .catch((error) => this.onError(error));

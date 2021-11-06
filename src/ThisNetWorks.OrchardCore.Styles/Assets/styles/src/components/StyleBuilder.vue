@@ -53,8 +53,7 @@ import IStylesChangeArgs from "../types/style-change-args";
 import Color from "./Color.vue";
 import SizeSingle from "./SizeSingle.vue";
 import TextAny from "./TextAny.vue";
-// Disabled till shortcode available
-// import Media from "./Media.vue";
+import Media from "./Media.vue";
 import { styleRenderer } from "../renderers/renderers";
 
 @Component({
@@ -63,7 +62,7 @@ import { styleRenderer } from "../renderers/renderers";
     Color,
     SizeSingle,
     TextAny,
-    // Media,
+    Media,
   },
 })
 export default class StyleBuilder extends Vue {

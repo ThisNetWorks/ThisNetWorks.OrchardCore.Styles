@@ -28,7 +28,8 @@
     {
       "name": "Feature",
       "enable": [
-        "ThisNetWorks.OrchardCore.Styles"
+        "ThisNetWorks.OrchardCore.Styles",
+        "OrchardCore.Contents.Deployment.ExportContentToDeploymentTarget"
       ],
       "disable": []
     },
@@ -40,7 +41,8 @@
         "Area": "OrchardCore.Contents",
         "ContentItemId": "[js: variables('styleGuideContentItemId')]"
       }
-    },    {
+    },
+    {
       "name": "StyleSchemas",
       "StyleSchemas": {
         "Button": {
@@ -49,7 +51,7 @@
         },
         "Background Image": {
           "Name": "Background Image",
-          "Schema": "{\r\n  \"BackgroundImage\": {\r\n    \"component\": \"Media\",\r\n    \"displayText\": \"Background iamge\",\r\n    \"hint\": \"Pick a image for the background\",\r\n    \"defaultValue\": {\r\n      \"asset\": {\r\n        \"path\": \"about-bg.jpg\",\r\n        \"shortcode\": \"[image]about-bg.jpg[/image]\"\r\n      }\r\n    },\r\n    \"renderer\": {\r\n      \"name\": \"LiquidJs\",\r\n      \"template\": \".card { background-image: url('{{ value }}'); }\"\r\n    }\r\n  }\r\n}"
+          "Schema": "{\r\n  \"BackgroundImage\": {\r\n    \"component\": \"Media\",\r\n    \"displayText\": \"Background iamge\",\r\n    \"hint\": \"Pick a image for the background\",\r\n    \"defaultValue\": {\r\n      \"asset\": {\r\n        \"path\": \"about-bg.jpg\",\r\n        \"shortcode\": \"[asset_url]about-bg.jpg[/asset_url]\"\r\n      }\r\n    },\r\n    \"renderer\": {\r\n      \"name\": \"LiquidJs\",\r\n      \"template\": \".card { background-image: url('{{ value }}'); }\"\r\n    }\r\n  }\r\n}"
         },
         "Css Variables": {
           "Name": "Css Variables",
@@ -60,116 +62,6 @@
           "Schema": "{\r\n  \"H2Color\": {\r\n    \"component\": \"Color\",\r\n    \"displayText\": \"H2 color\",\r\n    \"hint\": \"Pick a color for the H2 element\",\r\n    \"defaultValue\": {\r\n      \"color\": {\r\n        \"hex\": \"#8bc34a\",\r\n        \"rgb\": \"rgba(139, 195, 74, 1)\"\r\n      }\r\n    },\r\n    \"renderer\": {\r\n      \"name\": \"LiquidJs\",\r\n      \"template\": \"h2 { color: {{ value.hex }}; }\"\r\n    }\r\n  }\r\n}"
         }
       }
-    },
-    {
-      "name": "ContentDefinition",
-      "ContentTypes": [
-        {
-          "Name": "StyleGuide",
-          "DisplayName": "Style Guide",
-          "Settings": {
-            "ContentTypeSettings": {
-              "Creatable": true,
-              "Listable": true,
-              "Draftable": true,
-              "Versionable": true,
-              "Securable": true
-            },
-            "FullTextAspectSettings": {}
-          },
-          "ContentTypePartDefinitionRecords": [
-            {
-              "PartName": "StyleGuide",
-              "Name": "StyleGuide",
-              "Settings": {
-                "ContentTypePartSettings": {
-                  "Position": "1"
-                }
-              }
-            },
-            {
-              "PartName": "AutoroutePart",
-              "Name": "AutoroutePart",
-              "Settings": {
-                "ContentTypePartSettings": {
-                  "Position": "3"
-                }
-              }
-            },
-            {
-              "PartName": "TitlePart",
-              "Name": "TitlePart",
-              "Settings": {
-                "ContentTypePartSettings": {
-                  "Position": "0"
-                }
-              }
-            },
-            {
-              "PartName": "LiquidPart",
-              "Name": "LiquidPart",
-              "Settings": {
-                "ContentTypePartSettings": {
-                  "Position": "2"
-                }
-              }
-            }
-          ]
-        }
-      ],
-      "ContentParts": [
-        {
-          "Name": "StyleGuide",
-          "Settings": {},
-          "ContentPartFieldDefinitionRecords": [
-            {
-              "FieldName": "StyleField",
-              "Name": "CssVariables",
-              "Settings": {
-                "ContentPartFieldSettings": {
-                  "DisplayName": "Css Variables",
-                  "Position": "0"
-                },
-                "ContentIndexSettings": {},
-                "StyleFieldSettings": {
-                  "StyleSchemaName": "Css Variables",
-                  "StyleSchema": "{}"
-                }
-              }
-            },
-            {
-              "FieldName": "StyleField",
-              "Name": "Button",
-              "Settings": {
-                "ContentPartFieldSettings": {
-                  "DisplayName": "Button",
-                  "Position": "1"
-                },
-                "ContentIndexSettings": {},
-                "StyleFieldSettings": {
-                  "StyleSchemaName": "Button",
-                  "StyleSchema": "{}"
-                }
-              }
-            },
-            {
-              "FieldName": "StyleField",
-              "Name": "Heading2",
-              "Settings": {
-                "ContentPartFieldSettings": {
-                  "DisplayName": "Heading 2",
-                  "Position": "2"
-                },
-                "ContentIndexSettings": {},
-                "StyleFieldSettings": {
-                  "StyleSchemaName": "H2 Color",
-                  "StyleSchema": "{}"
-                }
-              }
-            }
-          ]
-        }
-      ]
     },
     {
       "name": "Content",
@@ -284,10 +176,22 @@
                 }
               },
               "CompiledStyle": ".my-bg { background-image: url('[image]home-bg.jpg[/image]'); }"
+            },
+            "Background": {
+              "StyleRecord": {
+                "BackgroundImage": {
+                  "asset": {
+                    "path": "about-bg.jpg",
+                    "shortcode": "[asset_url]about-bg.jpg[/asset_url]"
+                  },
+                  "compiled": ".card { background-image: url('[asset_url]about-bg.jpg[/asset_url]'); }"
+                }
+              },
+              "CompiledStyle": ".card { background-image: url('[asset_url]about-bg.jpg[/asset_url]'); }"
             }
           },
           "AutoroutePart": {
-            "Path": "style-guide1",
+            "Path": "style-guide",
             "SetHomepage": false,
             "Disabled": false,
             "RouteContainedItems": false,
@@ -297,8 +201,199 @@
             "Title": "Style Guide"
           },
           "LiquidPart": {
-            "Liquid": "{% comment %}\r\nThis style declaration would normally be part of your style sheet\r\n{% endcomment %}\r\n\r\n{% styleblock at: \"Head\" %}\r\n.my-sites-button {\r\n  color: var(--button-text-color-hex);\r\n  background-color: var(--button-background-color-hex);\r\n  border: var(--border);\r\n  border-radius: var(--border-radius);\r\n}\r\n{% endstyleblock %}\r\n\r\n<div class=\"mb-3\">\r\n<button class=\"btn my-sites-button\">Css Var Button</button>\r\n</div>\r\n\r\n<div class=\"mb-3\">\r\n<button class=\"btn my-btn\">My Button</button>\r\n</div>\r\n\r\n<div class=\"mb-3\">\r\n  <h2>heading 2</h2>\r\n</div>\r\n"
+            "Liquid": "{% comment %}\r\nThis style declaration would normally be part of your style sheet\r\n{% endcomment %}\r\n\r\n{% styleblock at: \"Head\" %}\r\n.my-sites-button {\r\n  color: var(--button-text-color-hex);\r\n  background-color: var(--button-background-color-hex);\r\n  border: var(--border);\r\n  border-radius: var(--border-radius);\r\n}\r\n{% endstyleblock %}\r\n\r\n<div class=\"mb-3\">\r\n<button class=\"btn my-sites-button\">Css Var Button</button>\r\n</div>\r\n\r\n<div class=\"mb-3\">\r\n<button class=\"btn my-btn\">My Button</button>\r\n</div>\r\n\r\n<div class=\"mb-3\">\r\n  <h2>heading 2</h2>\r\n</div>\r\n\r\n<div class=\"card\">\r\n  <div class=\"card-body\">\r\n    a background image\r\n  </div>\r\n</div>\r\n  "
           }
+        }
+      ]
+    },
+    {
+      "name": "ContentDefinition",
+      "ContentTypes": [
+        {
+          "Name": "StyleGuide",
+          "DisplayName": "Style Guide",
+          "Settings": {
+            "ContentTypeSettings": {
+              "Creatable": true,
+              "Listable": true,
+              "Draftable": true,
+              "Versionable": true,
+              "Securable": true
+            },
+            "FullTextAspectSettings": {}
+          },
+          "ContentTypePartDefinitionRecords": [
+            {
+              "PartName": "StyleGuide",
+              "Name": "StyleGuide",
+              "Settings": {
+                "ContentTypePartSettings": {
+                  "Position": "1"
+                }
+              }
+            },
+            {
+              "PartName": "AutoroutePart",
+              "Name": "AutoroutePart",
+              "Settings": {
+                "ContentTypePartSettings": {
+                  "Position": "3"
+                }
+              }
+            },
+            {
+              "PartName": "TitlePart",
+              "Name": "TitlePart",
+              "Settings": {
+                "ContentTypePartSettings": {
+                  "Position": "0"
+                }
+              }
+            },
+            {
+              "PartName": "LiquidPart",
+              "Name": "LiquidPart",
+              "Settings": {
+                "ContentTypePartSettings": {
+                  "Position": "2"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "ContentParts": [
+        {
+          "Name": "StyleGuide",
+          "Settings": {},
+          "ContentPartFieldDefinitionRecords": [
+            {
+              "FieldName": "StyleField",
+              "Name": "CssVariables",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "Css Variables",
+                  "Position": "0"
+                },
+                "ContentIndexSettings": {},
+                "StyleFieldSettings": {
+                  "StyleSchemaName": "Css Variables",
+                  "StyleSchema": "{}"
+                }
+              }
+            },
+            {
+              "FieldName": "StyleField",
+              "Name": "Button",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "Button",
+                  "Position": "1"
+                },
+                "ContentIndexSettings": {},
+                "StyleFieldSettings": {
+                  "StyleSchemaName": "Button",
+                  "StyleSchema": "{}"
+                }
+              }
+            },
+            {
+              "FieldName": "StyleField",
+              "Name": "Heading2",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "Heading 2",
+                  "Position": "2"
+                },
+                "ContentIndexSettings": {},
+                "StyleFieldSettings": {
+                  "StyleSchemaName": "H2 Color",
+                  "StyleSchema": "{}"
+                }
+              }
+            },
+            {
+              "FieldName": "StyleField",
+              "Name": "Background",
+              "Settings": {
+                "ContentPartFieldSettings": {
+                  "DisplayName": "Background",
+                  "Position": "3"
+                },
+                "ContentIndexSettings": {},
+                "StyleFieldSettings": {
+                  "StyleSchemaName": "Background Image",
+                  "StyleSchema": "{}"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "deployment",
+      "Plans": [
+        {
+          "Name": "Create styles setup recipe",
+          "Steps": [
+            {
+              "Type": "JsonRecipeDeploymentStep",
+              "Step": {
+                "Json": "    {\r\n      \"name\": \"Recipes\",\r\n      \"Values\": [\r\n        {\r\n          \"ExecutionId\": \"\",\r\n          \"Name\": \"Blog\"\r\n        }\r\n      ]\r\n    }",
+                "Id": "afa96ad488ce4f26ab95fac67b10db82",
+                "Name": "JsonRecipe"
+              }
+            },
+            {
+              "Type": "JsonRecipeDeploymentStep",
+              "Step": {
+                "Json": " {\r\n      \"name\": \"Feature\",\r\n      \"enable\": [\r\n        \"ThisNetWorks.OrchardCore.Styles\",\r\n        \"OrchardCore.Contents.Deployment.ExportContentToDeploymentTarget\"\r\n      ],\r\n      \"disable\": []\r\n    }",
+                "Id": "fedbdf55ea2349cab8be619ea1b0b19e",
+                "Name": "JsonRecipe"
+              }
+            },
+            {
+              "Type": "JsonRecipeDeploymentStep",
+              "Step": {
+                "Json": "   {\r\n      \"name\": \"settings\",\r\n      \"HomeRoute\": {\r\n        \"Action\": \"Display\",\r\n        \"Controller\": \"Item\",\r\n        \"Area\": \"OrchardCore.Contents\",\r\n        \"ContentItemId\": \"[js: variables('styleGuideContentItemId')]\"\r\n      }\r\n    }",
+                "Id": "d5770f08013044129a056a71b2fc6dfc",
+                "Name": "JsonRecipe"
+              }
+            },
+            {
+              "Type": "AllStyleSchemasDeploymentStep",
+              "Step": {
+                "Id": "3271c2e3f89441a8992c4d2f11d98d39",
+                "Name": "AllStyleSchemas"
+              }
+            },
+            {
+              "Type": "ContentDefinitionDeploymentStep",
+              "Step": {
+                "IncludeAll": false,
+                "ContentTypes": [
+                  "StyleGuide"
+                ],
+                "ContentParts": [
+                  "StyleGuide"
+                ],
+                "Id": "b20d81e23b7442c997c58da518a152bc",
+                "Name": "ContentDefinition"
+              }
+            },
+            {
+              "Type": "DeploymentPlanDeploymentStep",
+              "Step": {
+                "IncludeAll": false,
+                "DeploymentPlanNames": [
+                  "Create styles setup recipe"
+                ],
+                "Id": "5a6180995fca4aeea259b87a5b159bec",
+                "Name": "DeploymentPlan"
+              }
+            }
+          ]
         }
       ]
     }
