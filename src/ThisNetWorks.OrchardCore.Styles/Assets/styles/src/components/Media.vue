@@ -1,14 +1,12 @@
 <template>
   <div>
-    <div class="form-group row" v-if="schema">
-      <div class="col-12 col-md-6">Media Item Lable:</div>
-      <div class="col-12 col-md-6">
-        <media-picker
-          :path="path"
-          @path-change="onPathChange"
-          :mediaItemUrl="mediaItemUrl"
-        />
-      </div>
+    <div class="form-group text-left" v-if="schema">
+      <label class="mb-0">{{ displayText }}</label>
+      <media-picker
+        :path="path"
+        @path-change="onPathChange"
+        :mediaItemUrl="mediaItemUrl"
+      />
     </div>
   </div>
 </template>
