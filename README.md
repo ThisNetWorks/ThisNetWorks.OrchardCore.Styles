@@ -197,4 +197,4 @@ e.g. `1.2.0-preview-16541` refers to the CloudSmith Orchard Core prerelease buil
 
 ## License
 
-[ThisNetworks.OrchardCore.Tyles](https://github.com/ThisNetWorks/ThisNetWorks.OrchardCore.STyles/blob/master/LICENSE) licensed under the terms of the MIT License.
+[ThisNetworks.OrchardCore.Styles](https://github.com/ThisNetWorks/ThisNetWorks.OrchardCore.STyles/blob/master/LICENSE) licensed under the terms of the MIT License.
