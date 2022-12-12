@@ -9,6 +9,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@types/bootstrap": "^5.2.6",
     "@types/jquery": "^3.5.7",
     "autoprefixer": "^10.3.7",
     "axios": "^0.23.0",

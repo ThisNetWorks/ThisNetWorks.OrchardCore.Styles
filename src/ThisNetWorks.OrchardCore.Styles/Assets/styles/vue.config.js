@@ -15,7 +15,8 @@ module.exports = {
       config.externals({
         'vue': 'Vue',
         $: 'jquery',
-        'jquery': 'jQuery'
+        'jquery': 'jQuery',
+        'bootstrap': 'bootstrap'
       });
     } else {
       console.log(`vue.js is bundled`);
