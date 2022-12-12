@@ -82,6 +82,7 @@
 import { Component, Prop, Vue, Emit } from "vue-property-decorator";
 import * as jquery from "jquery";
 import axios from "axios";
+import * as bootstrap from "bootstrap";
 
 interface IMediaFieldPrefs {
   smallThumbs: boolean;
@@ -147,7 +148,10 @@ export default class MediaPicker extends Vue {
         .detach()
         .appendTo($(this.$refs.mediaModal).find(".modal-body"));
       $("#mediaApp").show();
-      const modal = $(this.$refs.mediaModal).modal();
+
+      var modal = new bootstrap.Modal(this.$refs.mediaModal as HTMLElement);
+      modal.show();
+
       $(this.$refs.mediaModal)
         .find(".mediaFieldSelectButton")
         .off("click")
@@ -166,7 +170,7 @@ export default class MediaPicker extends Vue {
           // we don't want the included medias to be still selected the next time we open the modal.
           (window as any).mediaApp.selectedMedias = [];
 
-          modal.modal("hide");
+          modal.hide();
           return true;
         });
     }
@@ -231,6 +235,7 @@ export default class MediaPicker extends Vue {
   removeSelected() {
     this.mediaItem = null;
     this.selectedMedia = null;
+    this.pathChange();
   }
 
   // selectAndDeleteMedia(media) {
